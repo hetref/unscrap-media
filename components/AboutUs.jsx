@@ -32,7 +32,7 @@ const AboutUs = () => {
           />
         </div>
       </div>
-      <div className="absolute bottom-40 right-0 w-full z-[-1] flex justify-end overflow-hidden">
+      <div className="absolute bottom-40 md:bottom-0 right-0 w-full z-[-1] flex justify-end overflow-hidden">
         {/* <img src={shape} alt="Shape" /> */}
         <Image
           src={shape}
