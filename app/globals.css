@@ -1,33 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue&family=Open+Sans&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  /* font-family: "Comic Neue", sans-serif; */
+  font-family: "Open Sans", sans-serif;
+}
+body {
+  @apply bg-light text-dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.unscrap_logo {
+  animation: glitch 2s infinite;
+  cursor: pointer;
+
+  &:hover {
+    animation: none;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.button {
+  @apply font-bold py-2 px-4 md:px-6 rounded-full text-[1rem] md:text-[1.1rem] tracking-wide border-4;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.button-fill-black {
+  @apply bg-black text-white border-dark hover:bg-primary hover:border-primary duration-300;
+}
+
+.button-hollow {
+  @apply border-4 border-primary hover:bg-primary hover:text-white duration-300;
+}
+
+.title_sec_heading {
+  span {
+    @apply text-primary;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    opacity: 0.25;
+    /* animation-timing-function: cubic-bezier(0.8, 0, 1, 1); */
+  }
+  25% {
+    opacity: 1;
+    /* animation-timing-function: cubic-bezier(0, 0, 0.2, 1); */
+  }
+  50% {
+    opacity: 0.25;
+    /* animation-timing-function: cubic-bezier(0, 0, 0.2, 1); */
+  }
+  75% {
+    opacity: 1;
+    /* animation-timing-function: cubic-bezier(0, 0, 0.2, 1); */
+  }
+  100% {
+    opacity: 0.25;
+    /* animation-timing-function: cubic-bezier(0, 0, 0.2, 1); */
   }
 }
