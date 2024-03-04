@@ -7,7 +7,13 @@
 * {
   /* font-family: "Comic Neue", sans-serif; */
   font-family: "Open Sans", sans-serif;
+  scroll-behavior: smooth;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-light text-dark;
 }

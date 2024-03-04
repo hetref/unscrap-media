@@ -1,7 +1,22 @@
-import React from "react";
+"use client";
 
-const page = () => {
+import { auth } from "@/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import React, { useState } from "react";
+
+const DashboardLogin = () => {
+  const [user, setUser] = useState();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUser(true);
+      // console.log(user);
+    } else {
+      setUser(false);
+    }
+  });
+
   return <div>page</div>;
 };
 
-export default page;
+export default DashboardLogin;
