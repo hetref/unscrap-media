@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "aryu-um.github.io",
       },
+      {
+        protocol: "https",
+        hostname: "strapi-um.onrender.com",
+      },
     ],
   },
 };
