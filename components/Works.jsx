@@ -114,12 +114,12 @@ const Works = () => {
                       key={work.id}
                       className="bg-light w-full hover:bg-lightprimary duration-300 px-[2rem] md:px-[2.6rem] rounded py-[1.8rem] md:py-[2.4rem] cursor-pointer border-2 border-primary"
                     >
-                      <Image
+                      <img
                         src={`https://strapi-um.onrender.com${work.attributes.Image.data.attributes.url}`}
                         alt="Work Snapshot"
                         className="w-full h-[200px] object-cover mb-6 rounded"
-                        width={1000}
-                        height={1000}
+                        // width={1000}
+                        // height={1000}
                       />
                       <h1
                         className={`text-2xl font-semibold mb-2 ${
@@ -147,12 +147,12 @@ const Works = () => {
                     key={work.id}
                     className="bg-light w-full hover:bg-lightprimary duration-300 px-[2rem] md:px-[2.6rem] rounded py-[1.8rem] md:py-[2.4rem] cursor-pointer border-2 border-primary"
                   >
-                    <Image
+                    <img
                       src={`https://strapi-um.onrender.com${work.attributes.Image.data.attributes.url}`}
                       alt="Work Snapshot"
                       className="w-full h-[200px] object-cover mb-6 rounded"
-                      width={1000}
-                      height={1000}
+                      // width={1000}
+                      // height={1000}
                     />
                     <h1
                       className={`text-2xl font-semibold mb-2 ${
