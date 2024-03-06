@@ -45,7 +45,7 @@ const Header = () => {
                   Services
                 </button>
               </div>
-              <div className="flex mt-6">
+              <div className="flex mt-6 justify-center md:justify-normal">
                 <a
                   className="button button-hollow-black"
                   href="https://drive.google.com/file/d/1c8yxMu-xHH_mHbWLTMG1nyBMvy-TXAUy/view?usp=sharing"
