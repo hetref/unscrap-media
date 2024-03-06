@@ -1,7 +1,93 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import SectionTitle from "./supporters/SectionTitle";
+import emailjs from "@emailjs/browser";
+import { ref, serverTimestamp, set } from "firebase/database";
+import { database, db } from "@/firebase";
 
 const Contact = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [timestamp, setTimestamp] = useState();
+
+  useEffect(() => {
+    const today = new Date();
+    setTimestamp(
+      `${today.getFullYear()}${today.getMonth()}${today.getDate()}${today.getHours()}${today.getMinutes()}${today.getSeconds()}`
+    );
+    console.log(timestamp);
+    console.log(today);
+  }, [timestamp]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (
+      firstName === "" ||
+      firstName.length === 0 ||
+      lastName === "" ||
+      lastName.length === 0 ||
+      phoneNo === "" ||
+      phoneNo.length === 0 ||
+      email === "" ||
+      email.length === 0
+    ) {
+      notifyError("Please enter all the required fields", "🙏");
+      setLoading(false);
+    } else {
+      set(ref(db, "unscrapMedia/contact/" + timestamp), {
+        name: firstName + " " + lastName,
+        phoneNo,
+        email,
+        message:
+          message.length === 0 || message === "" ? "No Message" : message,
+        timestamp: serverTimestamp(),
+        storedTimestamp: timestamp,
+      })
+        .then(() => {
+          console.log("Contcted Successfully");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      emailjs
+        .send(
+          "service_0zyslu8",
+          "template_cadhcun",
+          {
+            from_name: firstName + " " + lastName,
+            to_name: "Aryan Shinde",
+            from_email: email,
+            to_email: "aryan.unscrapmedia@gmail.com",
+            from_phoneNo: phoneNo,
+            message:
+              message === "" || message.length === 0 ? "No Message" : message,
+          },
+          "_lFuPk3VscEw-5oGu"
+        )
+        .then(() => {
+          console.log("Success");
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .finally(() => {
+          setLoading(false);
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPhoneNo("");
+          setMessage("");
+        });
+    }
+  };
+
   return (
     <>
       <span
@@ -26,18 +112,22 @@ const Contact = () => {
                 Top rated construction packages we pleasure rationally encounter
                 consequences interesting who loves or pursue or desires
               </p>
-              <form className="mt-4">
+              <form className="mt-4" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-4 mt-4 items-center">
                   <div className="flex md:flex-row flex-col w-full gap-4 md:gap-0">
                     <input
                       type="text"
                       placeholder="First Name"
                       className="border-2 border-[#ebf1f6] py-2 rounded-md text-[16px] px-3 w-full md:mr-2"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                     <input
                       type="text"
                       placeholder="Last Name"
                       className="border-2 border-[#ebf1f6] py-2 rounded-md text-[16px] px-3 w-full md:ml-2"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                   <div className="flex w-full md:flex-row flex-col gap-4 md:gap-0">
@@ -45,19 +135,28 @@ const Contact = () => {
                       type="tel"
                       placeholder="Phone"
                       className="border-2 border-[#ebf1f6] py-2 rounded-md text-[16px] px-3 w-full md:mr-2"
+                      value={phoneNo}
+                      onChange={(e) => setPhoneNo(e.target.value)}
                     />
                     <input
                       type="email"
                       placeholder="Email"
                       className="border-2 border-[#ebf1f6] py-2 rounded-md text-[16px] px-3 w-full md:ml-2"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <textarea
                     placeholder="Your Message"
                     className="border-2 border-[#ebf1f6] py-2 rounded-md text-[16px] px-3 w-full resize-none"
                     rows={4}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                   ></textarea>
-                  <button className="bg-primary text-white px-[16px] py-[8px] rounded-md mt-2 hover:bg-[#3d72a3bc] duration-200 ease-in-out">
+                  <button
+                    type="submit"
+                    className="bg-primary text-white px-[16px] py-[8px] rounded-md mt-2 hover:bg-[#3d72a3bc] duration-200 ease-in-out"
+                  >
                     Send Message
                   </button>
                 </div>

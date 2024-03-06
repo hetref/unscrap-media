@@ -1,8 +1,16 @@
+"use client";
+
 import React from "react";
 import shape from "../assets/images/shape.svg";
 import Image from "next/image";
 
 const Header = () => {
+  const redirectToSection = (section) => () => {
+    window.document
+      .querySelector(section)
+      .scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <span
@@ -22,11 +30,30 @@ const Header = () => {
               Full solution for your Existence in{" "}
               <span className="text-primary">Social Life</span>
             </h1>
-            <div className="flex justify-center md:justify-normal mt-[3rem]">
-              <button className="button button-fill-black mr-4">
-                Contact Us
-              </button>
-              <button className="button button-hollow ml-4">Services</button>
+            <div className="flex justify-center flex-col md:justify-normal mt-[3rem]">
+              <div className="flex justify-center md:justify-normal">
+                <button
+                  className="button button-hollow-black mr-4"
+                  onClick={redirectToSection("#contact")}
+                >
+                  Contact Us
+                </button>
+                <button
+                  className="button button-hollow ml-4"
+                  onClick={redirectToSection("#services")}
+                >
+                  Services
+                </button>
+              </div>
+              <div className="flex mt-6">
+                <a
+                  className="button button-hollow-black"
+                  href="https://drive.google.com/file/d/1c8yxMu-xHH_mHbWLTMG1nyBMvy-TXAUy/view?usp=sharing"
+                  target="_blank"
+                >
+                  Download Portfolio
+                </a>
+              </div>
             </div>
           </div>
           <div className="flex-1 flex justify-center items-center py-[1rem] md:p-[2rem]">

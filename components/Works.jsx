@@ -15,22 +15,24 @@ const Works = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://strapi-um.onrender.com/api/works?populate=*")
+      await fetch(
+        "https://strapi-um.onrender.com/api/works-completeds?populate=*"
+      )
         .then((res) => res.json())
         .then((data) => {
           pathname === "/"
             ? setData(data.data.slice(0, 6))
             : setData(data.data);
-          console.log(data);
-        });
+        })
+        .catch((error) => console.log(error));
       await fetch(
         "https://strapi-um.onrender.com/api/work-categories?populate=*"
       )
         .then((res) => res.json())
         .then((data) => {
           setCategories(data.data);
-          console.log(data.data);
-        });
+        })
+        .catch((error) => console.log(error));
 
       setLoading(false);
     };
@@ -115,7 +117,7 @@ const Works = () => {
                       className="bg-light w-full hover:bg-lightprimary duration-300 px-[2rem] md:px-[2.6rem] rounded py-[1.8rem] md:py-[2.4rem] cursor-pointer border-2 border-primary"
                     >
                       <img
-                        src={`https://strapi-um.onrender.com${work.attributes.Image.data.attributes.url}`}
+                        src={work.attributes.ImageLink}
                         alt="Work Snapshot"
                         className="w-full h-[200px] object-cover mb-6 rounded"
                         // width={1000}
@@ -148,7 +150,7 @@ const Works = () => {
                     className="bg-light w-full hover:bg-lightprimary duration-300 px-[2rem] md:px-[2.6rem] rounded py-[1.8rem] md:py-[2.4rem] cursor-pointer border-2 border-primary"
                   >
                     <img
-                      src={`https://strapi-um.onrender.com${work.attributes.Image.data.attributes.url}`}
+                      src={work.attributes.ImageLink}
                       alt="Work Snapshot"
                       className="w-full h-[200px] object-cover mb-6 rounded"
                       // width={1000}

@@ -14,7 +14,8 @@ const Services = () => {
         .then((data) => {
           setData(data.data);
           console.log(data);
-        });
+        })
+        .catch((error) => console.log(error));
       setLoading(false);
     };
 
@@ -60,7 +61,7 @@ const Services = () => {
               data.map((service, index) => (
                 <div
                   key={index}
-                  className="bg-light w-full hover:bg-lightprimary duration-300 px-[2rem] md:px-[2.6rem] rounded py-[1.8rem] md:py-[2.4rem] cursor-pointer border-2 border-primary"
+                  className="bg-light w-full hover:bg-lightprimary duration-300 px-[2rem] md:px-[2.6rem] rounded py-[1.8rem] md:py-[2.4rem] border-2 border-primary"
                 >
                   <h1 className="text-2xl font-semibold mb-4">
                     {service.attributes.Title}
