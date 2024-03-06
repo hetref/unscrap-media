@@ -119,12 +119,10 @@ const Works = () => {
                       <img
                         src={work.attributes.ImageLink}
                         alt="Work Snapshot"
-                        className="w-full h-[200px] object-cover mb-6 rounded"
-                        // width={1000}
-                        // height={1000}
+                        className="w-full object-cover mb-6 rounded border-2 border-black px-4 py-2"
                       />
                       <h1
-                        className={`text-2xl font-semibold mb-2 ${
+                        className={`text-2xl text-black font-semibold mb-2 ${
                           work.attributes.Link != undefined && "underline"
                         }`}
                       >
@@ -152,12 +150,10 @@ const Works = () => {
                     <img
                       src={work.attributes.ImageLink}
                       alt="Work Snapshot"
-                      className="w-full h-[200px] object-cover mb-6 rounded"
-                      // width={1000}
-                      // height={1000}
+                      className="w-full object-cover mb-6 rounded border-2 border-black px-4 py-2"
                     />
                     <h1
-                      className={`text-2xl font-semibold mb-2 ${
+                      className={`text-2xl text-black font-semibold mb-2 ${
                         work.attributes.Link != undefined && "underline"
                       }`}
                     >
